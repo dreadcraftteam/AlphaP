@@ -1,0 +1,14 @@
+# Ignore this! NOW!
+
+# Compiler stuff 
+/temp/src/*
+/logs/*
+/workspace/*
+/bin/
+/reobf/*
+/build/
+
+# Game stuff 
+/jars/resources/*
+/jars/saves/*
+/jars/options.txt
