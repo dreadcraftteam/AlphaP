@@ -38,9 +38,7 @@ public class RenderPlayer extends RenderLiving {
 	public void renderPlayer(EntityPlayer entityPlayer1, double d2, double d4, double d6, float f8, float f9) {
 		ItemStack itemStack10 = entityPlayer1.inventory.getCurrentItem();
 		ModelBiped modelBiped11 = (ModelBiped)this.mainModel;
-		modelBiped11.heldItemRight = itemStack10 != null;
 		super.doRenderLiving(entityPlayer1, d2, d4 - (double)entityPlayer1.yOffset, d6, f8, f9);
-		modelBiped11.heldItemRight = false;
 		FontRenderer fontRenderer12 = this.getFontRendererFromRenderManager();
 		float f13 = 1.6F;
 		float f14 = 0.016666668F * f13;
@@ -85,27 +83,17 @@ public class RenderPlayer extends RenderLiving {
 			GL11.glPushMatrix();
 			this.modelBipedMain.bipedRightArm.renderWithRotation(0.0625F);
 			GL11.glTranslatef(-0.0625F, 0.4375F, 0.0625F);
-			float f4;
+			float f4 = 0.625F;
 			if(itemStack3.itemID < 256 && RenderBlocks.renderItemIn3d(Block.blocksList[itemStack3.itemID].getRenderType())) {
-				f4 = 0.5F;
 				GL11.glTranslatef(0.0F, 0.1875F, -0.3125F);
 				f4 *= 0.75F;
 				GL11.glRotatef(20.0F, 1.0F, 0.0F, 0.0F);
-				GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
 				GL11.glScalef(f4, -f4, f4);
-			} else if(Item.itemsList[itemStack3.itemID].isFull3D()) {
-				f4 = 0.625F;
+			} else {
 				GL11.glTranslatef(0.0F, 0.1875F, 0.0F);
 				GL11.glScalef(f4, -f4, f4);
-				GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
+				GL11.glRotatef(-120.0F, 1.0F, 0.0F, 0.0F);
 				GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
-			} else {
-				f4 = 0.375F;
-				GL11.glTranslatef(0.25F, 0.1875F, -0.1875F);
-				GL11.glScalef(f4, f4, f4);
-				GL11.glRotatef(60.0F, 0.0F, 0.0F, 1.0F);
-				GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
-				GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
 			}
 
 			this.renderManager.itemRenderer.renderItem(itemStack3);
