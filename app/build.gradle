@@ -1,0 +1,84 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation fileTree(dir: '../libs', include: ['**/*.jar'])
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+        resources {
+            srcDirs = ['src/main/resources', '../../assets']
+        }
+    }
+}
+
+task clientJar(type: Jar) {
+    archiveBaseName = 'AlphaPlus'
+    destinationDirectory.set(file("$buildDir/libs"))
+    manifest {
+        attributes(
+            'Main-Class': 'net.minecraft.client.Bootstrap'
+        )
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from(sourceSets.main.output) {
+        include 'net/minecraft/**'
+    }
+
+    from(sourceSets.main.resources)
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+task serverJar(type: Jar) {
+    archiveBaseName = 'AlphaPlus-server'
+    destinationDirectory.set(file("$buildDir/libs"))
+    manifest {
+        attributes(
+            'Main-Class': 'net.minecraft.server.Bootstrap'
+        )
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from(sourceSets.main.output) {
+        include 'net/minecraft_server/**'
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+build.dependsOn clientJar, serverJar
+
+// task startC(dependsOn: clientJar, type: JavaExec) {
+//     dependsOn clientJar
+//     group = "run"
+//     main = 'net.minecraft.client.Bootstrap'
+//     classpath = files(
+//         sourceSets.main.output,
+//         configurations.runtimeClasspath,
+//         tasks.clientJar.outputs.files
+//     )
+
+//     def nativesPath = "$projectDir/natives"
+//     jvmArgs = ["-Djava.library.path=$nativesPath"]
+// }
+
+
+application {
+    mainClass = 'net.minecraft.client.Bootstrap'
+}
