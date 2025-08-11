@@ -5,8 +5,10 @@ import java.util.Random;
 public class Item {
 	protected static Random itemRand = new Random();
 	public static Item[] itemsList = new Item[32000];
-	public static Item shovelSteel = (new ItemSpade(0, EnumToolMaterial.IRON)).setIconCoord(2, 5).setItemName("shovelIron");
-	public static Item pickaxeSteel = (new ItemPickaxe(1, EnumToolMaterial.IRON)).setIconCoord(2, 6).setItemName("pickaxeIron");
+	public static Item shovelSteel = (new ItemSpade(0, EnumToolMaterial.IRON)).setIconCoord(2, 5)
+			.setItemName("shovelIron");
+	public static Item pickaxeSteel = (new ItemPickaxe(1, EnumToolMaterial.IRON)).setIconCoord(2, 6)
+			.setItemName("pickaxeIron");
 	public static Item axeSteel = (new ItemAxe(2, EnumToolMaterial.IRON)).setIconCoord(2, 7).setItemName("hatchetIron");
 	public static Item flintAndSteel = (new ItemFlintAndSteel(3)).setIconCoord(5, 0).setItemName("flintAndSteel");
 	public static Item appleRed = (new ItemFood(4, 4, false)).setIconCoord(10, 0).setItemName("apple");
@@ -16,25 +18,40 @@ public class Item {
 	public static Item diamond = (new Item(8)).setIconCoord(7, 3).setItemName("emerald");
 	public static Item ingotIron = (new Item(9)).setIconCoord(7, 1).setItemName("ingotIron");
 	public static Item ingotGold = (new Item(10)).setIconCoord(7, 2).setItemName("ingotGold");
-	public static Item swordSteel = (new ItemSword(11, EnumToolMaterial.IRON)).setIconCoord(2, 4).setItemName("swordIron");
-	public static Item swordWood = (new ItemSword(12, EnumToolMaterial.WOOD)).setIconCoord(0, 4).setItemName("swordWood");
-	public static Item shovelWood = (new ItemSpade(13, EnumToolMaterial.WOOD)).setIconCoord(0, 5).setItemName("shovelWood");
-	public static Item pickaxeWood = (new ItemPickaxe(14, EnumToolMaterial.WOOD)).setIconCoord(0, 6).setItemName("pickaxeWood");
+	public static Item swordSteel = (new ItemSword(11, EnumToolMaterial.IRON)).setIconCoord(2, 4)
+			.setItemName("swordIron");
+	public static Item swordWood = (new ItemSword(12, EnumToolMaterial.WOOD)).setIconCoord(0, 4)
+			.setItemName("swordWood");
+	public static Item shovelWood = (new ItemSpade(13, EnumToolMaterial.WOOD)).setIconCoord(0, 5)
+			.setItemName("shovelWood");
+	public static Item pickaxeWood = (new ItemPickaxe(14, EnumToolMaterial.WOOD)).setIconCoord(0, 6)
+			.setItemName("pickaxeWood");
 	public static Item axeWood = (new ItemAxe(15, EnumToolMaterial.WOOD)).setIconCoord(0, 7).setItemName("hatchetWood");
-	public static Item swordStone = (new ItemSword(16, EnumToolMaterial.STONE)).setIconCoord(1, 4).setItemName("swordStone");
-	public static Item shovelStone = (new ItemSpade(17, EnumToolMaterial.STONE)).setIconCoord(1, 5).setItemName("shovelStone");
-	public static Item pickaxeStone = (new ItemPickaxe(18, EnumToolMaterial.STONE)).setIconCoord(1, 6).setItemName("pickaxeStone");
-	public static Item axeStone = (new ItemAxe(19, EnumToolMaterial.STONE)).setIconCoord(1, 7).setItemName("hatchetStone");
-	public static Item swordDiamond = (new ItemSword(20, EnumToolMaterial.EMERALD)).setIconCoord(3, 4).setItemName("swordDiamond");
-	public static Item shovelDiamond = (new ItemSpade(21, EnumToolMaterial.EMERALD)).setIconCoord(3, 5).setItemName("shovelDiamond");
-	public static Item pickaxeDiamond = (new ItemPickaxe(22, EnumToolMaterial.EMERALD)).setIconCoord(3, 6).setItemName("pickaxeDiamond");
-	public static Item axeDiamond = (new ItemAxe(23, EnumToolMaterial.EMERALD)).setIconCoord(3, 7).setItemName("hatchetDiamond");
+	public static Item swordStone = (new ItemSword(16, EnumToolMaterial.STONE)).setIconCoord(1, 4)
+			.setItemName("swordStone");
+	public static Item shovelStone = (new ItemSpade(17, EnumToolMaterial.STONE)).setIconCoord(1, 5)
+			.setItemName("shovelStone");
+	public static Item pickaxeStone = (new ItemPickaxe(18, EnumToolMaterial.STONE)).setIconCoord(1, 6)
+			.setItemName("pickaxeStone");
+	public static Item axeStone = (new ItemAxe(19, EnumToolMaterial.STONE)).setIconCoord(1, 7)
+			.setItemName("hatchetStone");
+	public static Item swordDiamond = (new ItemSword(20, EnumToolMaterial.EMERALD)).setIconCoord(3, 4)
+			.setItemName("swordDiamond");
+	public static Item shovelDiamond = (new ItemSpade(21, EnumToolMaterial.EMERALD)).setIconCoord(3, 5)
+			.setItemName("shovelDiamond");
+	public static Item pickaxeDiamond = (new ItemPickaxe(22, EnumToolMaterial.EMERALD)).setIconCoord(3, 6)
+			.setItemName("pickaxeDiamond");
+	public static Item axeDiamond = (new ItemAxe(23, EnumToolMaterial.EMERALD)).setIconCoord(3, 7)
+			.setItemName("hatchetDiamond");
 	public static Item stick = (new Item(24)).setIconCoord(5, 3).setFull3D().setItemName("stick");
 	public static Item bowlEmpty = (new Item(25)).setIconCoord(7, 4).setItemName("bowl");
 	public static Item bowlSoup = (new ItemSoup(26, 10)).setIconCoord(8, 4).setItemName("mushroomStew");
-	public static Item swordGold = (new ItemSword(27, EnumToolMaterial.GOLD)).setIconCoord(4, 4).setItemName("swordGold");
-	public static Item shovelGold = (new ItemSpade(28, EnumToolMaterial.GOLD)).setIconCoord(4, 5).setItemName("shovelGold");
-	public static Item pickaxeGold = (new ItemPickaxe(29, EnumToolMaterial.GOLD)).setIconCoord(4, 6).setItemName("pickaxeGold");
+	public static Item swordGold = (new ItemSword(27, EnumToolMaterial.GOLD)).setIconCoord(4, 4)
+			.setItemName("swordGold");
+	public static Item shovelGold = (new ItemSpade(28, EnumToolMaterial.GOLD)).setIconCoord(4, 5)
+			.setItemName("shovelGold");
+	public static Item pickaxeGold = (new ItemPickaxe(29, EnumToolMaterial.GOLD)).setIconCoord(4, 6)
+			.setItemName("pickaxeGold");
 	public static Item axeGold = (new ItemAxe(30, EnumToolMaterial.GOLD)).setIconCoord(4, 7).setItemName("hatchetGold");
 	public static Item silk = (new Item(31)).setIconCoord(8, 0).setItemName("string");
 	public static Item feather = (new Item(32)).setIconCoord(8, 1).setItemName("feather");
@@ -42,7 +59,8 @@ public class Item {
 	public static Item hoeWood = (new ItemHoe(34, EnumToolMaterial.WOOD)).setIconCoord(0, 8).setItemName("hoeWood");
 	public static Item hoeStone = (new ItemHoe(35, EnumToolMaterial.STONE)).setIconCoord(1, 8).setItemName("hoeStone");
 	public static Item hoeSteel = (new ItemHoe(36, EnumToolMaterial.IRON)).setIconCoord(2, 8).setItemName("hoeIron");
-	public static Item hoeDiamond = (new ItemHoe(37, EnumToolMaterial.EMERALD)).setIconCoord(3, 8).setItemName("hoeDiamond");
+	public static Item hoeDiamond = (new ItemHoe(37, EnumToolMaterial.EMERALD)).setIconCoord(3, 8)
+			.setItemName("hoeDiamond");
 	public static Item hoeGold = (new ItemHoe(38, EnumToolMaterial.GOLD)).setIconCoord(4, 8).setItemName("hoeGold");
 	public static Item seeds = (new ItemSeeds(39, Block.crops.blockID)).setIconCoord(9, 0).setItemName("seeds");
 	public static Item wheat = (new Item(40)).setIconCoord(9, 1).setItemName("wheat");
@@ -75,8 +93,10 @@ public class Item {
 	public static Item sign = (new ItemSign(67)).setIconCoord(10, 2).setItemName("sign");
 	public static Item doorWood = (new ItemDoor(68, Material.wood)).setIconCoord(11, 2).setItemName("doorWood");
 	public static Item bucketEmpty = (new ItemBucket(69, 0)).setIconCoord(10, 4).setItemName("bucket");
-	public static Item bucketWater = (new ItemBucket(70, Block.waterMoving.blockID)).setIconCoord(11, 4).setItemName("bucketWater").setContainerItem(bucketEmpty);
-	public static Item bucketLava = (new ItemBucket(71, Block.lavaMoving.blockID)).setIconCoord(12, 4).setItemName("bucketLava").setContainerItem(bucketEmpty);
+	public static Item bucketWater = (new ItemBucket(70, Block.waterMoving.blockID)).setIconCoord(11, 4)
+			.setItemName("bucketWater").setContainerItem(bucketEmpty);
+	public static Item bucketLava = (new ItemBucket(71, Block.lavaMoving.blockID)).setIconCoord(12, 4)
+			.setItemName("bucketLava").setContainerItem(bucketEmpty);
 	public static Item minecartEmpty = (new ItemMinecart(72, 0)).setIconCoord(7, 8).setItemName("minecart");
 	public static Item saddle = (new ItemSaddle(73)).setIconCoord(8, 6).setItemName("saddle");
 	public static Item doorSteel = (new ItemDoor(74, Material.iron)).setIconCoord(12, 2).setItemName("doorIron");
@@ -84,7 +104,8 @@ public class Item {
 	public static Item snowball = (new ItemSnowball(76)).setIconCoord(14, 0).setItemName("snowball");
 	public static Item boat = (new ItemBoat(77)).setIconCoord(8, 8).setItemName("boat");
 	public static Item leather = (new Item(78)).setIconCoord(7, 6).setItemName("leather");
-	public static Item bucketMilk = (new ItemBucket(79, -1)).setIconCoord(13, 4).setItemName("milk").setContainerItem(bucketEmpty);
+	public static Item bucketMilk = (new ItemBucket(79, -1)).setIconCoord(13, 4).setItemName("milk")
+			.setContainerItem(bucketEmpty);
 	public static Item brick = (new Item(80)).setIconCoord(6, 1).setItemName("brick");
 	public static Item clay = (new Item(81)).setIconCoord(9, 3).setItemName("clay");
 	public static Item reed = (new ItemReed(82, Block.reed)).setIconCoord(11, 1).setItemName("reeds");
@@ -105,10 +126,11 @@ public class Item {
 	public static Item sugar = (new Item(97)).setIconCoord(13, 0).setItemName("sugar").setFull3D();
 	public static Item cake = (new ItemReed(98, Block.cake)).setMaxStackSize(1).setIconCoord(13, 1).setItemName("cake");
 	public static Item bed = (new ItemBed(99)).setMaxStackSize(1).setIconCoord(13, 2).setItemName("bed");
-	public static Item redstoneRepeater = (new ItemReed(100, Block.redstoneRepeaterIdle)).setIconCoord(6, 5).setItemName("diode");
+	public static Item redstoneRepeater = (new ItemReed(100, Block.redstoneRepeaterIdle)).setIconCoord(6, 5)
+			.setItemName("diode");
 	public static Item cookie = (new ItemCookie(101, 1, false, 8)).setIconCoord(12, 5).setItemName("cookie");
-	public static ItemMap mapItem = (ItemMap)(new ItemMap(102)).setIconCoord(12, 3).setItemName("map");
-	public static ItemShears shears = (ItemShears)(new ItemShears(103)).setIconCoord(13, 5).setItemName("shears");
+	public static ItemMap mapItem = (ItemMap) (new ItemMap(102)).setIconCoord(12, 3).setItemName("map");
+	public static ItemShears shears = (ItemShears) (new ItemShears(103)).setIconCoord(13, 5).setItemName("shears");
 	public static Item record13 = (new ItemRecord(2000, "13")).setIconCoord(0, 15).setItemName("record");
 	public static Item recordCat = (new ItemRecord(2001, "cat")).setIconCoord(1, 15).setItemName("record");
 	public final int shiftedIndex;
@@ -123,7 +145,7 @@ public class Item {
 
 	protected Item(int i1) {
 		this.shiftedIndex = 256 + i1;
-		if(itemsList[256 + i1] != null) {
+		if (itemsList[256 + i1] != null) {
 			System.out.println("CONFLICT @ " + i1);
 		}
 
@@ -153,7 +175,8 @@ public class Item {
 		return this.getIconFromDamage(itemStack1.getItemDamage());
 	}
 
-	public boolean onItemUse(ItemStack itemStack1, EntityPlayer entityPlayer2, World world3, int i4, int i5, int i6, int i7) {
+	public boolean onItemUse(ItemStack itemStack1, EntityPlayer entityPlayer2, World world3, int i4, int i5, int i6,
+			int i7) {
 		return false;
 	}
 
@@ -241,7 +264,7 @@ public class Item {
 	}
 
 	public Item setContainerItem(Item item1) {
-		if(this.maxStackSize > 1) {
+		if (this.maxStackSize > 1) {
 			throw new IllegalArgumentException("Max stack size must be 1 for items with crafting results");
 		} else {
 			this.containerItem = item1;

@@ -213,7 +213,7 @@ public abstract class Minecraft implements Runnable {
 			Display.setDisplayMode(new DisplayMode(this.displayWidth, this.displayHeight));
 		}
 
-		Display.setTitle("Minecraft Minecraft Beta 1.7.3");
+		Display.setTitle("AlphaPlus");
 
 		try {
 			Display.create();
@@ -343,7 +343,7 @@ public abstract class Minecraft implements Runnable {
 
 	public static File getMinecraftDir() {
 		if(minecraftDir == null) {
-			minecraftDir = getAppDir("minecraft");
+			minecraftDir = getAppDir("AlphaPlus");
 		}
 
 		return minecraftDir;
@@ -1449,7 +1449,7 @@ public abstract class Minecraft implements Runnable {
 
 	public static void startMainThread(String s, String s1, String s2) {
 		boolean flag = false;
-		Frame frame = new Frame("Minecraft");
+		Frame frame = new Frame("AlphaPlus");
 		Canvas canvas = new Canvas();
 		frame.setLayout(new BorderLayout());
 		frame.add(canvas, "Center");
@@ -1457,7 +1457,7 @@ public abstract class Minecraft implements Runnable {
 		frame.pack();
 		frame.setLocationRelativeTo((Component)null);
 		MinecraftImpl minecraftimpl = new MinecraftImpl(frame, canvas, (MinecraftApplet)null, 854, 480, flag, frame);
-		Thread thread = new Thread(minecraftimpl, "Minecraft main thread");
+		Thread thread = new Thread(minecraftimpl, "AlphaPlus main thread");
 		thread.setPriority(10);
 		minecraftimpl.minecraftUri = "www.minecraft.net";
 		if(s != null && s1 != null) {

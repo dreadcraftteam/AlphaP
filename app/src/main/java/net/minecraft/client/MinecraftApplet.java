@@ -49,7 +49,7 @@ public class MinecraftApplet extends Applet {
 
 	public void startMainThread() {
 		if(this.mcThread == null) {
-			this.mcThread = new Thread(this.mc, "Minecraft main thread");
+			this.mcThread = new Thread(this.mc, "AlphaPlus main thread");
 			this.mcThread.start();
 		}
 	}
