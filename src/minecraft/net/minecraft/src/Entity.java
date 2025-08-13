@@ -216,201 +216,203 @@ public abstract class Entity {
 	}
 
 	public void moveEntity(double moveX, double moveY, double moveZ) {
-		if(this.noClip) {
-			this.boundingBox.offset(moveX, moveY, moveZ);
-			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
-			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
-			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
-		} else {
-			double d7 = this.posX;
-			double d9 = this.posZ;
-			double d11 = moveX;
-			double d13 = moveY;
-			double d15 = moveZ;
-			AxisAlignedBB axisAlignedBB17 = this.boundingBox.copy();
-			List list18 = this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox.addCoord(moveX, moveY, moveZ));
+		if(!this.worldObj.multiplayerWorld || !(this instanceof EntityLiving) || this instanceof EntityPlayerSP) {
+			if(this.noClip) {
+				this.boundingBox.offset(moveX, moveY, moveZ);
+				this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
+				this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
+				this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
+			} else {
+				double d7 = this.posX;
+				double d9 = this.posZ;
+				double d11 = moveX;
+				double d13 = moveY;
+				double d15 = moveZ;
+				AxisAlignedBB axisAlignedBB17 = this.boundingBox.copy();
+				List list18 = this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox.addCoord(moveX, moveY, moveZ));
 
-			for(int i19 = 0; i19 < list18.size(); ++i19) {
-				moveY = ((AxisAlignedBB)list18.get(i19)).calculateYOffset(this.boundingBox, moveY);
-			}
-
-			this.boundingBox.offset(0.0D, moveY, 0.0D);
-			if(!this.surfaceCollision && d13 != moveY) {
-				moveZ = 0.0D;
-				moveY = 0.0D;
-				moveX = 0.0D;
-			}
-
-			boolean z34 = this.onGround || d13 != moveY && d13 < 0.0D;
-
-			int i20;
-			for(i20 = 0; i20 < list18.size(); ++i20) {
-				moveX = ((AxisAlignedBB)list18.get(i20)).calculateXOffset(this.boundingBox, moveX);
-			}
-
-			this.boundingBox.offset(moveX, 0.0D, 0.0D);
-			if(!this.surfaceCollision && d11 != moveX) {
-				moveZ = 0.0D;
-				moveY = 0.0D;
-				moveX = 0.0D;
-			}
-
-			for(i20 = 0; i20 < list18.size(); ++i20) {
-				moveZ = ((AxisAlignedBB)list18.get(i20)).calculateZOffset(this.boundingBox, moveZ);
-			}
-
-			this.boundingBox.offset(0.0D, 0.0D, moveZ);
-			if(!this.surfaceCollision && d15 != moveZ) {
-				moveZ = 0.0D;
-				moveY = 0.0D;
-				moveX = 0.0D;
-			}
-
-			double d22;
-			int i27;
-			double d35;
-			if(this.stepHeight > 0.0F && z34 && this.ySize < 0.05F && (d11 != moveX || d15 != moveZ)) {
-				d35 = moveX;
-				d22 = moveY;
-				double d24 = moveZ;
-				moveX = d11;
-				moveY = (double)this.stepHeight;
-				moveZ = d15;
-				AxisAlignedBB axisAlignedBB26 = this.boundingBox.copy();
-				this.boundingBox.setBB(axisAlignedBB17);
-				list18 = this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox.addCoord(d11, moveY, d15));
-
-				for(i27 = 0; i27 < list18.size(); ++i27) {
-					moveY = ((AxisAlignedBB)list18.get(i27)).calculateYOffset(this.boundingBox, moveY);
+				for(int i19 = 0; i19 < list18.size(); ++i19) {
+					moveY = ((AxisAlignedBB)list18.get(i19)).calculateYOffset(this.boundingBox, moveY);
 				}
 
 				this.boundingBox.offset(0.0D, moveY, 0.0D);
 				if(!this.surfaceCollision && d13 != moveY) {
 					moveZ = 0.0D;
-					moveY = 0.0D;
-					moveX = 0.0D;
+					moveY = moveZ;
+					moveX = moveZ;
 				}
 
-				for(i27 = 0; i27 < list18.size(); ++i27) {
-					moveX = ((AxisAlignedBB)list18.get(i27)).calculateXOffset(this.boundingBox, moveX);
+				boolean z35 = this.onGround || d13 != moveY && d13 < 0.0D;
+
+				int i20;
+				for(i20 = 0; i20 < list18.size(); ++i20) {
+					moveX = ((AxisAlignedBB)list18.get(i20)).calculateXOffset(this.boundingBox, moveX);
 				}
 
 				this.boundingBox.offset(moveX, 0.0D, 0.0D);
 				if(!this.surfaceCollision && d11 != moveX) {
 					moveZ = 0.0D;
-					moveY = 0.0D;
-					moveX = 0.0D;
+					moveY = moveZ;
+					moveX = moveZ;
 				}
 
-				for(i27 = 0; i27 < list18.size(); ++i27) {
-					moveZ = ((AxisAlignedBB)list18.get(i27)).calculateZOffset(this.boundingBox, moveZ);
+				for(i20 = 0; i20 < list18.size(); ++i20) {
+					moveZ = ((AxisAlignedBB)list18.get(i20)).calculateZOffset(this.boundingBox, moveZ);
 				}
 
 				this.boundingBox.offset(0.0D, 0.0D, moveZ);
 				if(!this.surfaceCollision && d15 != moveZ) {
 					moveZ = 0.0D;
-					moveY = 0.0D;
-					moveX = 0.0D;
+					moveY = moveZ;
+					moveX = moveZ;
 				}
 
-				if(d35 * d35 + d24 * d24 >= moveX * moveX + moveZ * moveZ) {
-					moveX = d35;
-					moveY = d22;
-					moveZ = d24;
-					this.boundingBox.setBB(axisAlignedBB26);
-				} else {
-					this.ySize = (float)((double)this.ySize + 0.5D);
-				}
-			}
+				double d21;
+				int i23;
+				double d24;
+				if(this.stepHeight > 0.0F && z35 && this.ySize < 0.05F && (d11 != moveX || d15 != moveZ)) {
+					d24 = moveX;
+					d21 = moveY;
+					double d26 = moveZ;
+					moveX = d11;
+					moveY = (double)this.stepHeight;
+					moveZ = d15;
+					AxisAlignedBB axisAlignedBB28 = this.boundingBox.copy();
+					this.boundingBox.setBB(axisAlignedBB17);
+					list18 = this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox.addCoord(d11, moveY, d15));
 
-			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
-			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
-			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
-			this.isCollidedHorizontally = d11 != moveX || d15 != moveZ;
-			this.isCollidedVertically = d13 != moveY;
-			this.onGround = d13 != moveY && d13 < 0.0D;
-			this.isCollided = this.isCollidedHorizontally || this.isCollidedVertically;
-			if(this.onGround) {
-				if(this.fallDistance > 0.0F) {
-					this.fall(this.fallDistance);
-					this.fallDistance = 0.0F;
-				}
-			} else if(moveY < 0.0D) {
-				this.fallDistance = (float)((double)this.fallDistance - moveY);
-			}
-
-			if(d11 != moveX) {
-				this.motionX = 0.0D;
-			}
-
-			if(d13 != moveY) {
-				this.motionY = 0.0D;
-			}
-
-			if(d15 != moveZ) {
-				this.motionZ = 0.0D;
-			}
-
-			d35 = this.posX - d7;
-			d22 = this.posZ - d9;
-			this.distanceWalkedModified = (float)((double)this.distanceWalkedModified + (double)MathHelper.sqrt_double(d35 * d35 + d22 * d22) * 0.6D);
-			int i25;
-			int i36;
-			int i38;
-			if(this.canTriggerWalking) {
-				i36 = MathHelper.floor_double(this.posX);
-				i25 = MathHelper.floor_double(this.posY - (double)0.2F - (double)this.yOffset);
-				i38 = MathHelper.floor_double(this.posZ);
-				i27 = this.worldObj.getBlockId(i36, i25, i38);
-				if(this.distanceWalkedModified > (float)this.nextStepDistance && i27 > 0) {
-					++this.nextStepDistance;
-					StepSound stepSound28 = Block.blocksList[i27].stepSound;
-					if(this.worldObj.getBlockId(i36, i25 + 1, i38) == Block.snow.blockID) {
-						stepSound28 = Block.snow.stepSound;
-						this.worldObj.playSoundAtEntity(this, stepSound28.getStepSound(), stepSound28.getVolume() * 0.15F, stepSound28.getPitch());
-					} else if(!Block.blocksList[i27].material.getIsLiquid()) {
-						this.worldObj.playSoundAtEntity(this, stepSound28.getStepSound(), stepSound28.getVolume() * 0.15F, stepSound28.getPitch());
+					for(i23 = 0; i23 < list18.size(); ++i23) {
+						moveY = ((AxisAlignedBB)list18.get(i23)).calculateYOffset(this.boundingBox, moveY);
 					}
 
-					Block.blocksList[i27].onEntityWalking(this.worldObj, i36, i25, i38, this);
+					this.boundingBox.offset(0.0D, moveY, 0.0D);
+					if(!this.surfaceCollision && d13 != moveY) {
+						moveZ = 0.0D;
+						moveY = moveZ;
+						moveX = moveZ;
+					}
+
+					for(i23 = 0; i23 < list18.size(); ++i23) {
+						moveX = ((AxisAlignedBB)list18.get(i23)).calculateXOffset(this.boundingBox, moveX);
+					}
+
+					this.boundingBox.offset(moveX, 0.0D, 0.0D);
+					if(!this.surfaceCollision && d11 != moveX) {
+						moveZ = 0.0D;
+						moveY = moveZ;
+						moveX = moveZ;
+					}
+
+					for(i23 = 0; i23 < list18.size(); ++i23) {
+						moveZ = ((AxisAlignedBB)list18.get(i23)).calculateZOffset(this.boundingBox, moveZ);
+					}
+
+					this.boundingBox.offset(0.0D, 0.0D, moveZ);
+					if(!this.surfaceCollision && d15 != moveZ) {
+						moveZ = 0.0D;
+						moveY = moveZ;
+						moveX = moveZ;
+					}
+
+					if(d24 * d24 + d26 * d26 >= moveX * moveX + moveZ * moveZ) {
+						moveX = d24;
+						moveY = d21;
+						moveZ = d26;
+						this.boundingBox.setBB(axisAlignedBB28);
+					} else {
+						this.ySize = (float)((double)this.ySize + 0.5D);
+					}
 				}
-			}
 
-			i36 = MathHelper.floor_double(this.boundingBox.minX);
-			i25 = MathHelper.floor_double(this.boundingBox.minY);
-			i38 = MathHelper.floor_double(this.boundingBox.minZ);
-			i27 = MathHelper.floor_double(this.boundingBox.maxX);
-			int i39 = MathHelper.floor_double(this.boundingBox.maxY);
-			int i29 = MathHelper.floor_double(this.boundingBox.maxZ);
+				this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
+				this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
+				this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
+				this.isCollidedHorizontally = d11 != moveX || d15 != moveZ;
+				this.isCollidedVertically = d13 != moveY;
+				this.onGround = d13 != moveY && d13 < 0.0D;
+				this.isCollided = this.isCollidedHorizontally || this.isCollidedVertically;
+				if(this.onGround) {
+					if(this.fallDistance > 0.0F) {
+						this.fall(this.fallDistance);
+						this.fallDistance = 0.0F;
+					}
+				} else if(moveY < 0.0D) {
+					this.fallDistance = (float)((double)this.fallDistance - moveY);
+				}
 
-			for(int i30 = i36; i30 <= i27; ++i30) {
-				for(int i31 = i25; i31 <= i39; ++i31) {
-					for(int i32 = i38; i32 <= i29; ++i32) {
-						int i33 = this.worldObj.getBlockId(i30, i31, i32);
-						if(i33 > 0) {
-							Block.blocksList[i33].onEntityCollidedWithBlock(this.worldObj, i30, i31, i32, this);
+				if(d11 != moveX) {
+					this.motionX = 0.0D;
+				}
+
+				if(d13 != moveY) {
+					this.motionY = 0.0D;
+				}
+
+				if(d15 != moveZ) {
+					this.motionZ = 0.0D;
+				}
+
+				d24 = this.posX - d7;
+				d21 = this.posZ - d9;
+				this.distanceWalkedModified = (float)((double)this.distanceWalkedModified + (double)MathHelper.sqrt_double(d24 * d24 + d21 * d21) * 0.6D);
+				int i27;
+				int i36;
+				int i37;
+				if(this.canTriggerWalking) {
+					i27 = MathHelper.floor_double(this.posX);
+					i36 = MathHelper.floor_double(this.posY - (double)0.2F - (double)this.yOffset);
+					i37 = MathHelper.floor_double(this.posZ);
+					i23 = this.worldObj.getBlockId(i27, i36, i37);
+					if(this.distanceWalkedModified > (float)this.nextStepDistance && i23 > 0) {
+						++this.nextStepDistance;
+						StepSound stepSound29 = Block.blocksList[i23].stepSound;
+						if(this.worldObj.getBlockId(i27, i36 + 1, i37) == Block.snow.blockID) {
+							stepSound29 = Block.snow.stepSound;
+							this.worldObj.playSoundAtEntity(this, stepSound29.getStepSound(), stepSound29.getVolume() * 0.15F, stepSound29.getPitch());
+						} else if(!Block.blocksList[i23].material.getIsLiquid()) {
+							this.worldObj.playSoundAtEntity(this, stepSound29.getStepSound(), stepSound29.getVolume() * 0.15F, stepSound29.getPitch());
+						}
+
+						Block.blocksList[i23].onEntityWalking(this.worldObj, i27, i36, i37, this);
+					}
+				}
+
+				i27 = MathHelper.floor_double(this.boundingBox.minX);
+				i36 = MathHelper.floor_double(this.boundingBox.minY);
+				i37 = MathHelper.floor_double(this.boundingBox.minZ);
+				i23 = MathHelper.floor_double(this.boundingBox.maxX);
+				int i38 = MathHelper.floor_double(this.boundingBox.maxY);
+				int i30 = MathHelper.floor_double(this.boundingBox.maxZ);
+
+				for(int i31 = i27; i31 <= i23; ++i31) {
+					for(int i32 = i36; i32 <= i38; ++i32) {
+						for(int i33 = i37; i33 <= i30; ++i33) {
+							int i34 = this.worldObj.getBlockId(i31, i32, i33);
+							if(i34 > 0) {
+								Block.blocksList[i34].onEntityCollidedWithBlock(this.worldObj, i31, i32, i33, this);
+							}
 						}
 					}
 				}
-			}
 
-			this.ySize *= 0.4F;
-			boolean z37 = this.handleWaterMovement();
-			if(this.worldObj.isBoundingBoxBurning(this.boundingBox)) {
-				this.dealFireDamage(1);
-				if(!z37) {
-					++this.fire;
-					if(this.fire == 0) {
-						this.fire = 300;
+				this.ySize *= 0.4F;
+				boolean z39 = this.handleWaterMovement();
+				if(this.worldObj.isBoundingBoxBurning(this.boundingBox)) {
+					this.dealFireDamage(1);
+					if(!z39) {
+						++this.fire;
+						if(this.fire == 0) {
+							this.fire = 300;
+						}
 					}
+				} else if(this.fire <= 0) {
+					this.fire = -this.fireResistance;
 				}
-			} else if(this.fire <= 0) {
-				this.fire = -this.fireResistance;
-			}
 
-			if(z37 && this.fire > 0) {
-				this.worldObj.playSoundAtEntity(this, "random.fizz", 0.7F, 1.6F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.4F);
-				this.fire = -this.fireResistance;
+				if(z39 && this.fire > 0) {
+					this.worldObj.playSoundAtEntity(this, "random.fizz", 0.7F, 1.6F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.4F);
+					this.fire = -this.fireResistance;
+				}
 			}
 
 		}
